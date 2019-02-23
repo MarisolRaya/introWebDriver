@@ -41,7 +41,7 @@ public class FacebookAddFriend {
 	}
 
 
-	private static void configurarNavegador() {
+	public static void configurarNavegador() {
 		ChromeOptions opts = new ChromeOptions();
 		opts.addArguments("--disable-notifications");
 		opts.addArguments("--start-maximized");
@@ -53,7 +53,7 @@ public class FacebookAddFriend {
 
 	} 
 
-	private static void logearFacebook(String usuario, String password) { 
+	public static void logearFacebook(String usuario, String password) {
 		WebElement campoUsuario; //id=email
 		WebElement campoPassword; //id="pass"
 		WebElement botonLogin; //data-testid="royal_login_button"
@@ -69,7 +69,7 @@ public class FacebookAddFriend {
 		botonLogin.click();
 	} 
 
-	private static void agregarAmigo(String string) {
+	public static void agregarAmigo(String string) {
 		//Buscar el botón "Añadir a mis amigos"
 		WebElement searchButton =driver.findElement(By.xpath("//div[@id='u_v_4']//button[@class='_42ft _4jy0 FriendRequestAdd addButton _4jy3 _517h _51sy']"));
 
@@ -77,8 +77,8 @@ public class FacebookAddFriend {
 		searchButton.click();
 		//Etiqueta de botón
 		//Xpath: //button[@id='js_hf'][contains(text(), 'Solicitud de amistad enviada')]
-		WebElement friendlink  = driver.findElement(By.xpath("//button[@class='_42ft _4jy0 FriendRequestOutgoing enableFriendListFlyout outgoingButton _4jy3 _517h _51sy'][@id='js_1oo']"));
-		if (friendlink.isDisplayed())
+		WebElement searbutton2  = driver.findElement(By.xpath("//button[@class='_42ft _4jy0 FriendRequestOutgoing enableFriendListFlyout outgoingButton _4jy3 _517h _51sy']"));
+		if (searbutton2.getText().equals("Solicitud de amistad enviada"))
 			System.out.println("Se envío correctamente la solicitud");
 		else{
 			System.out.println("La solicitud no fue enviada");
@@ -86,7 +86,7 @@ public class FacebookAddFriend {
 
 	}
 
-	private static void buscarAmigo(String nombreAmigo) {
+	public static void buscarAmigo(String nombreAmigo) {
 	//buscar el campo de texto para buscar
 
 		WebElement searchTextfield = driver.findElement(By.name("q"));
@@ -99,9 +99,9 @@ public class FacebookAddFriend {
 		//buscar nombre Pedro Morales
 		WebElement friendlink =driver.findElement(By.linkText(nombreAmigo));
 		if(friendlink.isDisplayed())
-			System.out.println("Mi amigo " + nombreAmigo+ "esta en los resultados");
+			System.out.println("Mi amigo " + nombreAmigo + "esta en los resultados");
 		else{
-			System.out.println("Mi amigo " + nombreAmigo+ "no esta en los resultados");
+			System.out.println("Mi amigo " + nombreAmigo + "no esta en los resultados");
 			System.exit( -1);
 		}
 
